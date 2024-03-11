@@ -27,7 +27,7 @@ public class PlayerObjectController : NetworkBehaviour
 	{
 		if (!NetworkClient.ready)
 			NetworkClient.Ready();
-
+		
 	}
 
 
@@ -51,7 +51,7 @@ public class PlayerObjectController : NetworkBehaviour
 			LobbyController.Instance.UpdateLobbyName();
 			LobbyController.Instance.UpdatePlayerList();
 		}
-		
+		SteamUser.StartVoiceRecording();
 	}
 
 	public override void OnStopClient()
@@ -59,6 +59,8 @@ public class PlayerObjectController : NetworkBehaviour
 		Manager.gamePlayers.Remove(this);
 		if (SceneManager.GetActiveScene().name != "Lobby") return;
 		LobbyController.Instance.UpdatePlayerList();
+
+		SteamUser.StartVoiceRecording();
 	}
 
 	[Command]
