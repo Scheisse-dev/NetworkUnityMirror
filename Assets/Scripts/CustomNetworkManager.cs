@@ -26,7 +26,7 @@ public class CustomNetworkManager : NetworkManager
 
 		if (SceneManager.GetActiveScene().name == "GameScene")
 		{
-			PlayerObjectController _gamePlayerInstance = Instantiate(GamePlayerPrefab);
+			PlayerObjectController _gamePlayerInstance = Instantiate(CCCPlayerPrefab);
 			_gamePlayerInstance.playerIdNumber = gamePlayers.Count + 1;
 			_gamePlayerInstance.playerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)SteamLobby.Instance.currentLobbyID, gamePlayers.Count);
 
@@ -55,11 +55,7 @@ public class CustomNetworkManager : NetworkManager
 
 	}
 
-	public override void OnServerSceneChanged(string sceneName)
-	{
-	
 
-	}
 
 
 

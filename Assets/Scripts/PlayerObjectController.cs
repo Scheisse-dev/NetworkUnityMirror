@@ -33,6 +33,7 @@ public class PlayerObjectController : NetworkBehaviour
 
 	public override void OnStartAuthority()
 	{
+		if (SceneManager.GetActiveScene().name != "Lobby") return;
 		CmdSetPlayerName(SteamFriends.GetPersonaName().ToString());
 		gameObject.name = "localGamePlayer";
 		LobbyController.Instance.FindLocalPlayer();
@@ -56,6 +57,7 @@ public class PlayerObjectController : NetworkBehaviour
 	public override void OnStopClient()
 	{
 		Manager.gamePlayers.Remove(this);
+		if (SceneManager.GetActiveScene().name != "Lobby") return;
 		LobbyController.Instance.UpdatePlayerList();
 	}
 
@@ -67,6 +69,7 @@ public class PlayerObjectController : NetworkBehaviour
 
 	public void PlayerNameUpdate(string _oldValue, string _newValue)
 	{
+		if (SceneManager.GetActiveScene().name != "Lobby") return;
 		if (isServer)
 			this.playerName = _newValue;
 		if (isClient)

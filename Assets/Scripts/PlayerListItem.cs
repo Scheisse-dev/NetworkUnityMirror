@@ -11,9 +11,9 @@ public class PlayerListItem : MonoBehaviour
 	public int connectionID;
 	public ulong playerSteamID;
 
-	private bool avatarReceived;
 
 	public Text playerNameText;
+	private bool avatarReceived;
 	public RawImage playerIcon;
 
 

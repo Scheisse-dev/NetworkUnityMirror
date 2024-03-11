@@ -9,11 +9,12 @@ public class UIManager : MonoBehaviour
 	[SerializeField] Button backButton;
 	[SerializeField] Canvas mainMenuCanvas;
 	[SerializeField] Canvas lobbyListCanvas;
-
+	[SerializeField] ServerListScript List;
 
 	private void Awake()
 	{
 		lobbyListButton.onClick.AddListener(SwitchCanvas);
+		lobbyListButton.onClick.AddListener(Refresh);
 		backButton.onClick.AddListener(SwitchCanvas);
 		lobbyListCanvas.enabled = !mainMenuCanvas.enabled;
 	}
@@ -24,5 +25,10 @@ public class UIManager : MonoBehaviour
 		
 		mainMenuCanvas.enabled = !mainMenuCanvas.enabled;
 		lobbyListCanvas.enabled = !mainMenuCanvas.enabled;
+	}
+
+	private void Refresh()
+	{
+		List.RefreshList();
 	}
 }

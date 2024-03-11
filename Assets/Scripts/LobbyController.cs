@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Mirror;
 using Steamworks;
 using System.Linq;
-
+using UnityEngine.SceneManagement;
 
 public class LobbyController : MonoBehaviour
 {
@@ -45,6 +45,7 @@ public class LobbyController : MonoBehaviour
 
 	public void UpdateLobbyName()
 	{
+		if (SceneManager.GetActiveScene().name != "Lobby") return;
 		currentLobbyId = Manager.GetComponent<SteamLobby>().currentLobbyID;
 		if(LobbyNameText != null)
 			LobbyNameText.text = SteamMatchmaking.GetLobbyData(new CSteamID(currentLobbyId), "name");
@@ -52,6 +53,8 @@ public class LobbyController : MonoBehaviour
 
 	public void UpdatePlayerList()
 	{
+		if (SceneManager.GetActiveScene().name != "Lobby") return;
+
 		if (!playerItemCreated) { CreateHostPlayerItem(); }
 
 		if (playerListItems == null) return;
@@ -100,7 +103,7 @@ public class LobbyController : MonoBehaviour
 
 	public void CreateClientPlayerItem()
 	{
-		if (playerListItems == null) return;
+		if (SceneManager.GetActiveScene().name != "Lobby") return;
 
 		foreach (PlayerObjectController player in Manager.gamePlayers)
 		{
@@ -126,7 +129,7 @@ public class LobbyController : MonoBehaviour
 	}
 	public void UpdatePlayerItem()
 	{
-		if (playerListItems == null) return;
+		if (SceneManager.GetActiveScene().name != "Lobby") return;
 
 		foreach (PlayerObjectController player in Manager.gamePlayers)
 		{
@@ -143,7 +146,7 @@ public class LobbyController : MonoBehaviour
 	}
 	public void RemovePlayerItem()
 	{
-		if (playerListItems == null) return;
+		if (SceneManager.GetActiveScene().name != "Lobby") return;
 
 		List<PlayerListItem> playerListItemToRemove = new List<PlayerListItem> ();
 
